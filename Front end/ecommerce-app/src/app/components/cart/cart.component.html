@@ -1,7 +1,0 @@
-<h2>Your Cart</h2>
-<ul>
-  <li *ngFor="let item of cart.cartItems">
-    {{ item.product.productName }} - {{ item.quantity }} x ${{ item.product.price }}
-  </li>
-</ul>
-<button (click)="checkout()">Checkout</button>
