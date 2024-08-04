@@ -38,13 +38,28 @@ namespace EcommerceAPI.Controllers
             return user;
         }
 
-        [HttpPost]
-        public async Task<ActionResult<User>> PostUser(User user)
+        [HttpPost("register")]
+        public async Task<ActionResult<User>> Register(User user)
         {
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetUser", new { id = user.UserId }, user);
+        }
+
+        [HttpPost("login")]
+        public async Task<ActionResult<User>> Login(UserDto userDto)
+        {
+            var user = await _context.Users
+                .Where(u => u.Username == userDto.Username && u.Password == userDto.Password)
+                .FirstOrDefaultAsync();
+
+            if (user == null)
+            {
+                return Unauthorized();
+            }
+
+            return Ok(user);
         }
 
         [HttpPut("{id}")]

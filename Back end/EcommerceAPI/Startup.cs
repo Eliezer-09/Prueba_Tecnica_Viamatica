@@ -19,7 +19,6 @@ namespace EcommerceAPI
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCors(options =>
@@ -32,6 +31,7 @@ namespace EcommerceAPI
                                .AllowAnyMethod();
                     });
             });
+
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
@@ -47,9 +47,6 @@ namespace EcommerceAPI
             });
         }
 
-
-
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -60,7 +57,7 @@ namespace EcommerceAPI
             app.UseHttpsRedirection();
             app.UseRouting();
 
-            app.UseCors("AllowSpecificOrigin"); // Habilitar CORS
+            app.UseCors("AllowSpecificOrigin");
 
             app.UseAuthorization();
 
@@ -68,6 +65,7 @@ namespace EcommerceAPI
             {
                 endpoints.MapControllers();
             });
+
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
@@ -75,6 +73,7 @@ namespace EcommerceAPI
                 c.RoutePrefix = string.Empty;
             });
         }
+
 
     }
 }

@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
 import { CategoryListComponent } from './components/category-list/category-list.component';
+import { ProductListComponent } from './components/product-list/product-list.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -20,7 +21,8 @@ const routes: Routes = [
     AppComponent,
     RegisterComponent,
     LoginComponent,
-    CategoryListComponent
+    CategoryListComponent,
+    ProductListComponent
   ],
   imports: [
     BrowserModule,

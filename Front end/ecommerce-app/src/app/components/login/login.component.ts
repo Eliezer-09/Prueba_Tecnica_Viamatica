@@ -10,15 +10,19 @@ import { Router } from '@angular/router';
 export class LoginComponent {
   username: string = '';
   password: string = '';
+  isLoading = false;
 
   constructor(private userService: UserService, private router: Router) { }
 
   login() {
+    this.isLoading = true;
     this.userService.login(this.username, this.password).subscribe(response => {
-      if (response) {
-        console.log('User logged in successfully', response);
-        this.router.navigate(['/categories']);
-      }
+      console.log('User logged in successfully', response);
+      this.isLoading = false;
+      this.router.navigate(['/products']);
+    }, error => {
+      console.error('Error logging in user', error);
+      this.isLoading = false;
     });
   }
 }

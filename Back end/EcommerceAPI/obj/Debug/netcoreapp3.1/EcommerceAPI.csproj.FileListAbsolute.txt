@@ -127,7 +127,6 @@ C:\Users\User\Desktop\Prueba Tecnica Viamatica\Prueba_Tecnica_Viamatica\Back end
 C:\Users\User\Desktop\Prueba Tecnica Viamatica\Prueba_Tecnica_Viamatica\Back end\EcommerceAPI\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.pdb
 C:\Users\User\Desktop\Prueba Tecnica Viamatica\Prueba_Tecnica_Viamatica\Back end\EcommerceAPI\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
 C:\Users\User\Desktop\Prueba Tecnica Viamatica\Prueba_Tecnica_Viamatica\Back end\EcommerceAPI\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
-C:\Users\User\Desktop\Prueba Tecnica Viamatica\Prueba_Tecnica_Viamatica\Back end\EcommerceAPI\obj\Debug\netcoreapp3.1\EcommerceAPI.csproj.AssemblyReference.cache
 C:\Users\User\Desktop\Prueba Tecnica Viamatica\Prueba_Tecnica_Viamatica\Back end\EcommerceAPI\obj\Debug\netcoreapp3.1\EcommerceAPI.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\User\Desktop\Prueba Tecnica Viamatica\Prueba_Tecnica_Viamatica\Back end\EcommerceAPI\obj\Debug\netcoreapp3.1\EcommerceAPI.AssemblyInfoInputs.cache
 C:\Users\User\Desktop\Prueba Tecnica Viamatica\Prueba_Tecnica_Viamatica\Back end\EcommerceAPI\obj\Debug\netcoreapp3.1\EcommerceAPI.AssemblyInfo.cs
@@ -142,3 +141,4 @@ C:\Users\User\Desktop\Prueba Tecnica Viamatica\Prueba_Tecnica_Viamatica\Back end
 C:\Users\User\Desktop\Prueba Tecnica Viamatica\Prueba_Tecnica_Viamatica\Back end\EcommerceAPI\obj\Debug\netcoreapp3.1\EcommerceAPI.dll
 C:\Users\User\Desktop\Prueba Tecnica Viamatica\Prueba_Tecnica_Viamatica\Back end\EcommerceAPI\obj\Debug\netcoreapp3.1\EcommerceAPI.pdb
 C:\Users\User\Desktop\Prueba Tecnica Viamatica\Prueba_Tecnica_Viamatica\Back end\EcommerceAPI\obj\Debug\netcoreapp3.1\EcommerceAPI.genruntimeconfig.cache
+C:\Users\User\Desktop\Prueba Tecnica Viamatica\Prueba_Tecnica_Viamatica\Back end\EcommerceAPI\obj\Debug\netcoreapp3.1\EcommerceAPI.csproj.AssemblyReference.cache
