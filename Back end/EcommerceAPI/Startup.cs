@@ -32,7 +32,6 @@ namespace EcommerceAPI
                                .AllowAnyMethod();
                     });
             });
-
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
@@ -58,11 +57,10 @@ namespace EcommerceAPI
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseCors("AllowSpecificOrigin");
-
             app.UseHttpsRedirection();
-
             app.UseRouting();
+
+            app.UseCors("AllowSpecificOrigin"); // Habilitar CORS
 
             app.UseAuthorization();
 
@@ -70,7 +68,6 @@ namespace EcommerceAPI
             {
                 endpoints.MapControllers();
             });
-
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
