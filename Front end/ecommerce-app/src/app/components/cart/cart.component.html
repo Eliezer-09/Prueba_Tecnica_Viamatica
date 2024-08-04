@@ -1,1 +1,44 @@
-<p>cart works!</p>
+<div class="container mt-5">
+    <div *ngIf="cart.getTotalItems() === 0" class="text-center">
+      <h3>No hay productos en el carrito.</h3>
+      <button class="btn btn-primary mt-3" (click)="continueShopping()">Seguir comprando</button>
+    </div>
+    <div *ngIf="cart.getTotalItems() > 0">
+      <div class="row">
+        <div class="col-md-6">
+          <div *ngFor="let item of cart.items" class="card mb-3">
+            <div class="card-body">
+              <h5 class="card-title">{{ item.product.productName }}</h5>
+              <p class="card-text">{{ item.product.Description }}</p>
+              <p class="card-text"><strong>{{ item.product.price | currency }}</strong></p>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <button class="btn btn-outline-secondary" type="button" (click)="decreaseQuantity(item)">-</button>
+                </div>
+                <input type="text" class="form-control text-center" [value]="item.quantity" readonly>
+                <div class="input-group-append">
+                  <button class="btn btn-outline-secondary" type="button" (click)="increaseQuantity(item)">+</button>
+                </div>
+              </div>
+              <button class="btn btn-danger" (click)="removeItem(item)">Eliminar</button>
+            </div>
+          </div>
+          <button class="btn btn-success btn-block" (click)="checkout()">Comprar</button>
+        </div>
+        <div class="col-md-6 text-center">
+          <div *ngIf="!isCheckout">
+            <h3>¿Se te olvidó algo?</h3>
+            <button class="btn btn-primary mt-3" (click)="continueShopping()">Seguir comprando</button>
+          </div>
+          <div *ngIf="isCheckout" class="border p-3 mt-3">
+            <h4>Factura</h4>
+            <p *ngFor="let item of cart.items">
+              {{ item.product.productName }} - {{ item.quantity }} x {{ item.product.price | currency }} = {{ item.quantity * item.product.price | currency }}
+            </p>
+            <h5>Total: {{ cart.getTotalQuantity() | currency }}</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

@@ -2,33 +2,33 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { RouterModule, Routes } from '@angular/router';
-import { AppComponent } from './app.component';
-import { RegisterComponent } from './components/register/register.component';
-import { LoginComponent } from './components/login/login.component';
-import { CategoryListComponent } from './components/category-list/category-list.component';
-import { ProductListComponent } from './components/product-list/product-list.component';
+import { CommonModule } from '@angular/common';
 
-const routes: Routes = [
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
-  { path: 'register', component: RegisterComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'categories', component: CategoryListComponent }
-];
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { ProductListComponent } from './components/product-list/product-list.component';
+import { CategoryListComponent } from './components/category-list/category-list.component';
+import { CartComponent } from './components/cart/cart.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    RegisterComponent,
-    LoginComponent,
+    ProductListComponent,
     CategoryListComponent,
-    ProductListComponent
+    CartComponent,
+    LoginComponent,
+    RegisterComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
+    AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    RouterModule.forRoot(routes)
+    CommonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

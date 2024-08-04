@@ -19,7 +19,7 @@ export class LoginComponent {
     this.userService.login(this.username, this.password).subscribe(response => {
       console.log('User logged in successfully', response);
       this.isLoading = false;
-      this.router.navigate(['/products']);
+      this.router.navigate(['/categories']);
     }, error => {
       console.error('Error logging in user', error);
       this.isLoading = false;

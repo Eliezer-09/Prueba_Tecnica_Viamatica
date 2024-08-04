@@ -26,18 +26,17 @@ namespace EcommerceAPI.Controllers
             return await _context.Categories.ToListAsync();
         }
 
-        // GET: api/Categories/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Category>> GetCategory(int id)
+        // GET: api/Categories/{id}/Products
+        [HttpGet("{id}/products")]
+        public async Task<ActionResult<IEnumerable<Product>>> GetProductsByCategory(int id)
         {
-            var category = await _context.Categories.FindAsync(id);
-
-            if (category == null)
+            var products = await _context.Products.Where(p => p.CategoryId == id).ToListAsync();
+            if (products == null || !products.Any())
             {
                 return NotFound();
             }
 
-            return category;
+            return Ok(products);
         }
 
         // POST: api/Categories

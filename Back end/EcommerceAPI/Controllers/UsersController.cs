@@ -48,18 +48,18 @@ namespace EcommerceAPI.Controllers
         }
 
         [HttpPost("login")]
-        public async Task<ActionResult<User>> Login(UserDto userDto)
+        public async Task<ActionResult<User>> Login(User user)
         {
-            var user = await _context.Users
-                .Where(u => u.Username == userDto.Username && u.Password == userDto.Password)
+            var existingUser = await _context.Users
+                .Where(u => u.Username == user.Username && u.Password == user.Password)
                 .FirstOrDefaultAsync();
 
-            if (user == null)
+            if (existingUser == null)
             {
                 return Unauthorized();
             }
 
-            return Ok(user);
+            return Ok(existingUser);
         }
 
         [HttpPut("{id}")]

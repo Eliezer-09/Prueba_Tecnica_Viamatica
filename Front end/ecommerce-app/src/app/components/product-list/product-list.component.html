@@ -1,23 +1,31 @@
 <div class="container mt-5">
-    <div *ngIf="isLoading" class="text-center">
-      <div class="spinner-border text-primary" role="status">
-        <span class="sr-only">Cargando...</span>
-      </div>
+  <div *ngIf="isLoading" class="text-center">
+    <div class="spinner-border text-primary" role="status">
+      <span class="sr-only">Cargando...</span>
     </div>
-    <div *ngIf="!isLoading">
-      <div class="row">
-        <div *ngFor="let product of products" class="col-md-4 mb-4">
-          <div class="card">
-            <img [src]="product.imageUrl" class="card-img-top" alt="{{product.name}}">
-            <div class="card-body">
-              <h5 class="card-title">{{product.name}}</h5>
-              <p class="card-text">{{product.description}}</p>
-              <p class="card-text"><strong>${{product.price}}</strong></p>
-              <button class="btn btn-primary" (click)="addToCart(product)">Agregar al Carrito</button>
+  </div>
+  <div *ngIf="!isLoading">
+    <div class="row">
+      <div *ngFor="let product of products" class="col-md-4 mb-4">
+        <div class="card">
+          <img [src]="product.url" class="card-img-top" alt="{{ product.productName }}">
+          <div class="card-body">
+            <h5 class="card-title">{{ product.productName }}</h5>
+            <p class="card-text">{{ product.Description }}</p>
+            <p class="card-text"><strong>{{ product.price | currency }}</strong></p>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <button class="btn btn-outline-secondary" type="button" (click)="quantities[product.productId] = Math.max(1, quantities[product.productId] - 1)" [disabled]="quantities[product.productId] <= 1">-</button>
+              </div>
+              <input type="text" class="form-control text-center" [value]="quantities[product.productId]" readonly>
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="button" (click)="quantities[product.productId] = Math.min(10, quantities[product.productId] + 1)" [disabled]="quantities[product.productId] >= 10">+</button>
+              </div>
             </div>
+            <button class="btn btn-primary" (click)="addToCart(product)" [disabled]="addedToCart[product.productId]">Agregar al Carrito</button>
           </div>
         </div>
       </div>
     </div>
   </div>
-  
+</div>
