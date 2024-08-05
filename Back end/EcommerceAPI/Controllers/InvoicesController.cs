@@ -5,6 +5,7 @@ using EcommerceAPI.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Linq;
+using System;
 
 namespace EcommerceAPI.Controllers
 {
@@ -24,10 +25,10 @@ namespace EcommerceAPI.Controllers
         public async Task<ActionResult<IEnumerable<Invoice>>> GetInvoices()
         {
             return await _context.Invoices
-                .Include(i => i.Cart) // Include cart details
-                .ThenInclude(c => c.User) // Include user details
-                .Include(i => i.Cart.CartItems) // Include cart items
-                .ThenInclude(ci => ci.Product) // Include product details
+                .Include(i => i.Cart)
+                    .ThenInclude(c => c.User)
+                .Include(i => i.Cart.CartItems)
+                    .ThenInclude(ci => ci.Product)
                 .ToListAsync();
         }
 
@@ -36,10 +37,10 @@ namespace EcommerceAPI.Controllers
         public async Task<ActionResult<Invoice>> GetInvoice(int id)
         {
             var invoice = await _context.Invoices
-                .Include(i => i.Cart) // Include cart details
-                .ThenInclude(c => c.User) // Include user details
-                .Include(i => i.Cart.CartItems) // Include cart items
-                .ThenInclude(ci => ci.Product) // Include product details
+                .Include(i => i.Cart)
+                    .ThenInclude(c => c.User)
+                .Include(i => i.Cart.CartItems)
+                    .ThenInclude(ci => ci.Product)
                 .FirstOrDefaultAsync(i => i.InvoiceId == id);
 
             if (invoice == null)
@@ -54,57 +55,25 @@ namespace EcommerceAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<Invoice>> PostInvoice(Invoice invoice)
         {
-            _context.Invoices.Add(invoice);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetInvoice", new { id = invoice.InvoiceId }, invoice);
-        }
-
-        // PUT: api/Invoices/5
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutInvoice(int id, Invoice invoice)
-        {
-            if (id != invoice.InvoiceId)
+            if (invoice == null || invoice.CartId == 0 || invoice.TotalAmount <= 0)
             {
-                return BadRequest();
+                return BadRequest("Invalid invoice data");
             }
 
-            _context.Entry(invoice).State = EntityState.Modified;
+            invoice.CreatedAt = DateTime.UtcNow;
 
             try
             {
+                _context.Invoices.Add(invoice);
                 await _context.SaveChangesAsync();
+                return CreatedAtAction(nameof(GetInvoice), new { id = invoice.InvoiceId }, invoice);
             }
-            catch (DbUpdateConcurrencyException)
+            catch (Exception ex)
             {
-                if (!InvoiceExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                return StatusCode(500, ex.Message);
             }
-
-            return NoContent();
         }
 
-        // DELETE: api/Invoices/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteInvoice(int id)
-        {
-            var invoice = await _context.Invoices.FindAsync(id);
-            if (invoice == null)
-            {
-                return NotFound();
-            }
-
-            _context.Invoices.Remove(invoice);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
-        }
 
         private bool InvoiceExists(int id)
         {

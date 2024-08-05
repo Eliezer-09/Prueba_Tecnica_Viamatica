@@ -8,10 +8,8 @@ namespace EcommerceAPI.Models
     {
         public int CartId { get; set; }
         public int UserId { get; set; }
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
         public User User { get; set; }
-        public DateTime CreatedAt { get; set; }
-
-        [JsonIgnore]
         public ICollection<CartItem> CartItems { get; set; }
     }
 }

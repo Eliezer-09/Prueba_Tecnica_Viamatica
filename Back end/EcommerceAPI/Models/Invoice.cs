@@ -7,8 +7,8 @@ namespace EcommerceAPI.Models
     {
         public int InvoiceId { get; set; }
         public int CartId { get; set; }
-        public Cart Cart { get; set; }
         public decimal TotalAmount { get; set; }
-        public DateTime CreatedAt { get; set; }
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+        public Cart Cart { get; set; }
     }
 }

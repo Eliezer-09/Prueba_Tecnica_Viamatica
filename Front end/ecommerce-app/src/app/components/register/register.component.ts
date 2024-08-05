@@ -9,19 +9,19 @@ import { Router } from '@angular/router';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
-  user: User = { username: '', password: '', email: '', createdAt: new Date() };
+  user: Partial<User> = { username: '', password: '', email: '' };
   isLoading = false;
 
   constructor(private userService: UserService, private router: Router) { }
 
   register() {
     this.isLoading = true;
-    this.userService.register(this.user).subscribe(response => {
-      console.log('User registered successfully', response);
+    this.userService.register(this.user as User).subscribe(response => {
+      console.log('Usuario registrado correctamente', response);
       this.isLoading = false; 
       this.router.navigate(['/login']);
     }, error => {
-      console.error('Error registering user', error);
+      console.error('Error al registrar el usuario', error);
       this.isLoading = false;
     });
   }
