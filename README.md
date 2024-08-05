@@ -12,9 +12,9 @@ Esta es una aplicación de comercio electrónico desarrollada como parte de una 
 
 ## Tecnologías Utilizadas
 
-- **Backend**: .NET Core
-- **Frontend**: Angular
-- **Base de Datos**: SQL Server
+- **Backend**: .NET Core 3.1
+- **Frontend**: Angular 12
+- **Base de Datos**: SQL Server 18
 
 ## Configuración del Proyecto
 
@@ -57,7 +57,7 @@ Esta es una aplicación de comercio electrónico desarrollada como parte de una 
 
 4. **Base de Datos**:
     - Configura tu servidor SQL Server y actualiza la cadena de conexión en `appsettings.json`.
-    - Ejecuta los scripts SQL para crear las tablas y llenar datos iniciales desde la carpeta `sql`.
+    - Ejecuta el script SQL para crear las tablas y llenar datos iniciales desde la carpeta `sql`.
 
 ### Uso
 
