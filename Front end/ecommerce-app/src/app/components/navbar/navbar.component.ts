@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { CartService } from '../../services/cart.service';
 
 @Component({
@@ -9,11 +10,15 @@ import { CartService } from '../../services/cart.service';
 export class NavbarComponent implements OnInit {
   totalItems: number = 0;
 
-  constructor(private cartService: CartService) { }
+  constructor(private cartService: CartService, private router: Router) { }
 
   ngOnInit(): void {
     this.cartService.getCart().subscribe(cart => {
-      this.totalItems = cart.getTotalQuantity();
+      this.totalItems = cart.items.reduce((total, item) => total + item.quantity, 0);
     });
+  }
+
+  logout() {
+    this.router.navigate(['/login']);
   }
 }

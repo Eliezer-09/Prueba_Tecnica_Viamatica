@@ -22,6 +22,7 @@ export class CategoryListComponent implements OnInit {
   }
 
   viewProducts(categoryId: number) {
+    console.log("Puto")
     this.router.navigate(['/categories', categoryId, 'products']);
   }
 }

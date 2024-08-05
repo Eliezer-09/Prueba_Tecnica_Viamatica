@@ -18,6 +18,9 @@
             <div class="form-group mt-3">
               <button type="submit" class="btn btn-primary w-100">Iniciar Sesión</button>
             </div>
+            <div class="form-group mt-5 text-center" style="color: red;" *ngIf="mostrar">
+              <p>Usuario o contraseña incorrectos</p>
+            </div>
             <div class="form-group mt-3 text-center">
               <a routerLink="/register" class="btn btn-link">Crear una cuenta nueva</a>
             </div>

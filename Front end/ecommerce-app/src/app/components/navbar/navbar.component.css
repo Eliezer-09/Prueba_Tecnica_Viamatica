@@ -1,3 +1,31 @@
-.navbar-brand{
-    align-items: center;
-}
+.navbar {
+    background-color: #343a40; /* Color oscuro para la barra de navegación */
+    font-weight: bold; /* Fuente en negrita */
+  }
+
+  
+  
+  .navbar-brand {
+    color: #ffffff; /* Color blanco para el texto */
+    font-size: 1.5rem; /* Aumentar tamaño de fuente */
+    text-align: center;
+  }
+  
+  .nav-link {
+    color: #ffffff; /* Color blanco para el enlace */
+  }
+  
+  .navbar .container {
+    display: flex;
+    justify-content: space-between; /* Distribuir espacio entre los elementos */
+  }
+  
+  .navbar .container .mx-auto {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .badge-primary {
+    background-color: #007bff; /* Color del badge */
+  }
+  

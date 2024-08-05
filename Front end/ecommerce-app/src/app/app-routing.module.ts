@@ -5,14 +5,23 @@ import { ProductListComponent } from './components/product-list/product-list.com
 import { CartComponent } from './components/cart/cart.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { LayoutComponent } from './components/layout/layout.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'categories', component: CategoryListComponent },
-  { path: 'categories/:id/products', component: ProductListComponent },
-  { path: 'cart', component: CartComponent }
+  {
+    path: '',
+    component: LayoutComponent,
+    children: [
+      { path: 'categories', component: CategoryListComponent },
+      { path: 'products', component: ProductListComponent },
+      { path: 'cart', component: CartComponent },
+      { path: 'categories/:id/products', component: ProductListComponent },
+      { path: '', redirectTo: '/categories', pathMatch: 'full' },
+    ],
+  },
+  { path: '**', redirectTo: '/categories' }
 ];
 
 @NgModule({

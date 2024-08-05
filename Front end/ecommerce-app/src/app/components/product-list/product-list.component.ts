@@ -10,7 +10,6 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent implements OnInit {
-[x: string]: any;
   products: Product[] = [];
   isLoading = true;
   categoryId!: number;
@@ -35,6 +34,12 @@ export class ProductListComponent implements OnInit {
         this.addedToCart[product.productId] = false;
       });
     });
+  }
+
+  updateQuantity(productId: number, change: number) {
+    if (this.quantities[productId] !== undefined) {
+      this.quantities[productId] = Math.min(10, Math.max(1, this.quantities[productId] + change));
+    }
   }
 
   addToCart(product: Product) {

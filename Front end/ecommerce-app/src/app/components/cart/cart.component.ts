@@ -14,6 +14,7 @@ export class CartComponent implements OnInit {
   cart!: Cart;
   isCheckout = false;
   currentUser!: User | null;
+  totalAmount: number = 0;
 
   constructor(private cartService: CartService, private router: Router, private userService: UserService) { }
 
@@ -23,12 +24,18 @@ export class CartComponent implements OnInit {
     });
     this.cartService.getCart().subscribe(cart => {
       this.cart = cart;
+      this.calculateTotalAmount();
     });
+  }
+
+  calculateTotalAmount() {
+    this.totalAmount = this.cart.items.reduce((total, item) => total + item.product.price * item.quantity, 0);
   }
 
   increaseQuantity(item: CartItem) {
     item.quantity = Math.min(10, item.quantity + 1);
     this.cartService.updateCart(this.cart);
+    this.calculateTotalAmount();
   }
 
   decreaseQuantity(item: CartItem) {
@@ -38,11 +45,13 @@ export class CartComponent implements OnInit {
       this.removeItem(item);
     }
     this.cartService.updateCart(this.cart);
+    this.calculateTotalAmount();
   }
 
   removeItem(item: CartItem) {
     this.cart.items = this.cart.items.filter(i => i !== item);
     this.cartService.updateCart(this.cart);
+    this.calculateTotalAmount();
   }
 
   confirmCheckout() {
@@ -54,8 +63,7 @@ export class CartComponent implements OnInit {
   checkout() {
     if (this.currentUser) {
       this.cartService.saveCart(this.currentUser.userId).subscribe(cart => {
-        const totalAmount = this.cart.items.reduce((total, item) => total + item.product.price * item.quantity, 0);
-        this.cartService.saveInvoice(cart.cartId, totalAmount).subscribe(invoice => {
+        this.cartService.saveInvoice(cart.cartId, this.totalAmount).subscribe(invoice => {
           this.isCheckout = true;
         });
       });
